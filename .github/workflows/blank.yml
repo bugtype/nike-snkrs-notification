@@ -1,24 +1,17 @@
-# This is a basic workflow to help you get started with Actions
+name: Notification
 
-name: CI
-
-# Controls when the action will run. 
 on:
   schedule:
-    - cron:  '1 1 * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
+    - cron: '1 1 * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,15 +19,28 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
         run: yarn install
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Run 
-      run: yarn start
+
+      - name: start
+        run: yarn start
+
+      - name: Create issue using REST API
+        if: success()
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "오늘은 🥾Nike Draw하셔야 돼요.😄 ",
+            "body": "Go!!!"
+            }' \
+          --fail

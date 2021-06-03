@@ -1,0 +1,24 @@
+{
+  "name": "nike-snkrs-notification",
+  "version": "1.0.0",
+  "description": "nike notification",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugtype/nike-snkrs-notification.git"
+  },
+  "author": "bugtype",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugtype/nike-snkrs-notification/issues"
+  },
+  "homepage": "https://github.com/bugtype/nike-snkrs-notification#readme",
+  "dependencies": {
+    "@actions/core": "^1.3.0",
+    "axios": "^0.21.1"
+  }
+}
