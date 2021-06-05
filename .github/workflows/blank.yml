@@ -2,16 +2,10 @@ name: Notification
 
 on:
   schedule:
-    - cron: '1 1 * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-
-  workflow_dispatch:
+    - cron: '10 1 * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
 
 jobs:
-  build:
+  cron:
     runs-on: ubuntu-latest
 
     strategy:
