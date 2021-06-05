@@ -2,7 +2,7 @@ name: SNKRS_Notification
 
 on:
   schedule:
-    - cron: '1 * * * *'
+    - cron: '99 99 * * *' # github action이 정확히 해당 시간에 실행하지 못한다.
 
 jobs:
   build:
