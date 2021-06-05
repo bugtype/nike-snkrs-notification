@@ -2,7 +2,7 @@ name: Notification
 
 on:
   schedule:
-    - cron: '11 * * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
+    - cron: '15 * * * *' # 주기적으로 실행하기 위한 스케줄링 - cron 설정
 
 jobs:
   cron:
