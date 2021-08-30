@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-    - cron: '0 1 * * *' # github action이 정확한 시간에 실행하지 못한다.
+    - cron: '10 0 * * *' # github action이 정확한 시간에 실행하지 못한다.
   workflow_dispatch:
 
 jobs:
